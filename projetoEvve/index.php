@@ -2,8 +2,8 @@
 
     $text = file_get_contents("datas.txt");
     
-    $regex = "/.+\s*\n/";
-    $result2 = preg_match_all($regex, $text, $source);
+    $line = "/.+\s*\n/";
+    $result2 = preg_match_all($line, $text, $source);
 
     //Deleted datas before this text
     $strString = "Mais relevantes";
@@ -17,6 +17,7 @@
         }
     }
 
+    //Deleted datas after this text
     $strString = "O frete grátis está sujeito ao peso, preço e distância do envio.";
     
     $source[0] = array_values($source[0]);
@@ -52,7 +53,6 @@
     }
     
     $source[0] = array_values($source[0]);
-    $strNewText2 = implode("", $source[0]);
 
     $getEm = '/^em+\s$/m';
     $result = preg_match_all($getEm, $strNewText, $em);
@@ -76,8 +76,8 @@
     $result = preg_match_all($patternShipping, $strNewText, $shipping);
 
     for($i=0; $i<count($productName[0]); $i++) {
-        $array[$i] = array("Product Name" => $productName[0][$i], "Value" => $value[0][$i], "Shipping" => $shipping[0][1]);
-        $arrayFinal[$i] = preg_replace('/\n|\t|\r/', "", $array[$i]);
+        $keyValue[$i] = array("Product Name" => $productName[0][$i], "Value" => $value[0][$i], "Shipping" => $shipping[0][1]);
+        $arrayFinal[$i] = preg_replace('/\n/', "", $keyValue[$i]);
     }
 
     // echo "<pre>"; print_r($arrayFinal); echo "</pre>" 
