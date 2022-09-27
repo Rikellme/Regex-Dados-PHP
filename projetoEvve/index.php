@@ -17,7 +17,6 @@
         }
     }
 
-    //Deleted datas after this text
     $strString = "O frete grátis está sujeito ao peso, preço e distância do envio.";
     
     $source[0] = array_values($source[0]);
